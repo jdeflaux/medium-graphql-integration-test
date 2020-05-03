@@ -17,9 +17,15 @@ jobs:
     strategy:
       matrix:
         node-version: [10.x, 12.x]
+        mongodb-version: [3.6.4]
 
     steps:
       - uses: actions/checkout@v1
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.3.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-replica-set: insert-replica-set-name
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install --frozen-lockfile # will run `yarn install` command
