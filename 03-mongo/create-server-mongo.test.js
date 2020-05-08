@@ -1,6 +1,6 @@
 // testing library
 const { createTestClient } = require('apollo-server-testing');
-const { getMongoConnection, createServer } = require('./create-server-mongo');
+const { getMongoConnection, createServerMongo } = require('./create-server-mongo');
 
 describe('mongo tests', () => {
   afterAll(() => {
@@ -11,7 +11,7 @@ describe('mongo tests', () => {
 
   test('read / write from mocked mongo', async () => {
     // @shelf/jest-mongodb sets the process.env.MONGO_URL for your convenience
-    const server = createServer(process.env.MONGO_URL);
+    const server = createServerMongo(process.env.MONGO_URL);
     const { query, mutate } = createTestClient(server);
 
     // graphl query

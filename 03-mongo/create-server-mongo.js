@@ -51,5 +51,5 @@ const createServerMongo = (mongoUrl) => {
   return server;
 };
 
-module.exports.createServer = createServerMongo;
+module.exports.createServerMongo = createServerMongo;
 module.exports.getMongoConnection = () => mongoConnection;
