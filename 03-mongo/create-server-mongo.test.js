@@ -29,12 +29,12 @@ describe('mongo tests', () => {
     expect(response.data.books).toEqual([]);
 
     // add a book
-    const ADD_TASKS =`
+    const ADD_BOOKS =`
       mutation {
         add(isbn: "B00352B45A", name: "Reaper Man")
       }
     `;
-    response = await mutate({ mutation: ADD_TASKS });
+    response = await mutate({ mutation: ADD_BOOKS });
     expect(response.errors).toBeUndefined();
 
     // not empty anymore, mongo worked!
