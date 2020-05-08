@@ -17,11 +17,11 @@ const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoServer = new MongoMemoryServer();
 mongoServer.getUri().then((mongoUri) => {
   console.log({ mongoUri });
-  console.log('each mongo:    at http://localhost:8082');
+  console.log('mongo:    at http://localhost:8082');
   return createServerMongo(mongoUri).listen(8082);
 }).catch(() => process.exit(1));
 
 
 // 04- http
 createServerHttp().listen(8083);
-console.log('each server:   at http://localhost:8083');
+console.log('http:   at http://localhost:8083');

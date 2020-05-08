@@ -8,7 +8,7 @@ test.each`
   isbn             | expected
   ${'0552166596'}  | ${[{ isbn: '0552166596', name: 'The Colour Of Magic' }]}
   ${'wrong isbn'}  | ${[]}
-  ${undefined}     | ${[]}
+  ${undefined}     | ${[{ isbn: '0552166596', name: 'The Colour Of Magic' }]}
 `('books($isbn) = $expected', async ({ isbn, expected }) => {
   // then 1 test implementation
 
@@ -16,9 +16,10 @@ test.each`
   const { query } = createTestClient(server);
 
   // graphl query
+  const parameters = isbn ? `(isbn: "${isbn}")` : '';
   const GET_BOOKS = `
   {
-    books(isbn: "${isbn}") {
+    books ${parameters} {
       isbn
       name
     }
